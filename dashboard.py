@@ -83,7 +83,20 @@ def hashing_section():
 
     st.write("Buat hash MD5, SHA-256, atau SHA-512 dari teks masukan.")
 
-    input_text = st.text_area("Masukkan Teks untuk di-Hash", height=150, key="hash_input_text")
+    # Inisialisasi session_state untuk input dan output hashing jika belum ada
+    if 'hash_input_text_state' not in st.session_state:
+        st.session_state.hash_input_text_state = ""
+    if 'hash_output_area_state' not in st.session_state:
+        st.session_state.hash_output_area_state = ""
+
+    # Gunakan value dan on_change untuk mengikat widget ke session_state
+    input_text = st.text_area(
+        "Masukkan Teks untuk di-Hash",
+        height=150,
+        key="hash_input_text",
+        value=st.session_state.hash_input_text_state,
+        on_change=lambda: setattr(st.session_state, 'hash_input_text_state', st.session_state.hash_input_text)
+    )
 
     hash_algorithm = st.selectbox("Pilih Algoritma Hashing", ["MD5", "SHA-256", "SHA-512"], key="hash_algo_select")
 
@@ -97,18 +110,31 @@ def hashing_section():
                 hashed_result = hashlib.sha256(encoded_input).hexdigest()
             elif hash_algorithm == "SHA-512":
                 hashed_result = hashlib.sha512(encoded_input).hexdigest()
-            st.text_area("Hasil Hash", value=hashed_result, height=100, disabled=True, key="hash_output_area")
+            
+            # Perbarui state output
+            st.session_state.hash_output_area_state = hashed_result
+            st.text_area("Hasil Hash", value=st.session_state.hash_output_area_state, height=100, disabled=True, key="hash_output_area")
             
             if hashed_result:
                 st.code(hashed_result, language='text')
                 st.success("Hash berhasil dibuat!")
-                # For web, instead of pyperclip, we instruct user or provide a copy button that uses JS (not direct Python)
                 st.info("Anda bisa menyalin hash di atas secara manual.")
         else:
             st.warning("Mohon masukkan teks untuk di-hash.")
+    else: # Ini penting agar output_area menampilkan nilai dari session_state setelah rerun
+         st.text_area("Hasil Hash", value=st.session_state.hash_output_area_state, height=100, disabled=True, key="hash_output_area")
 
-    if st.button("Bersihkan", key="clear_hash_fields"):
-        st.experimental_rerun() # Simple way to clear inputs in Streamlit
+
+    # Fungsi untuk membersihkan field
+    def clear_hashing_fields():
+        st.session_state.hash_input_text_state = ""
+        st.session_state.hash_output_area_state = ""
+        # Tidak perlu st.experimental_rerun() jika state diatur langsung
+
+    if st.button("Bersihkan", key="clear_hash_fields", on_click=clear_hashing_fields):
+        # Tombol akan memanggil clear_hashing_fields() saat diklik,
+        # dan Streamlit akan me-rerun secara otomatis setelah on_click
+        pass # Tidak perlu kode di sini karena on_click sudah menangani
 
 # --- Caesar Cipher Functions (Adapted for Streamlit) ---
 def caesar_cipher_section():
