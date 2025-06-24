@@ -10,13 +10,13 @@ import hashlib
 
 # --- Steganography Functions (Adapted for Streamlit) ---
 def steganography_section():
-    st.header("Steganografi - Sembunyikan/Baca Pesan")
+    st.header("Steganografi")
 
-    st.write("Sembunyikan pesan rahasia di dalam gambar atau baca pesan tersembunyi dari gambar.")
+    st.write("Steganografi adalah seni dan ilmu menyembunyikan pesan rahasia di dalam media lain (seperti gambar, audio, video, atau teks) sehingga keberadaan pesan tersebut tidak diketahui atau tidak disadari oleh pihak selain pengirim dan penerima yang dituju.")
 
     # Hide Message
     st.subheader("Sisipkan Pesan")
-    uploaded_image_hide = st.file_uploader("Pilih Gambar untuk Menyisipkan Pesan (PNG, BMP)", type=["png", "bmp"], key="hide_image")
+    uploaded_image_hide = st.file_uploader("Pilih Gambar untuk Menyisipkan Pesan", type=["jpg", "jpeg", "png"], key="hide_image")
     message_to_hide = st.text_area("Masukkan Pesan Rahasia", key="message_hide")
 
     if st.button("Sisipkan Pesan", key="do_hide"):
@@ -56,7 +56,7 @@ def steganography_section():
 
     # Reveal Message
     st.subheader("Baca Pesan dari Gambar")
-    uploaded_image_reveal = st.file_uploader("Pilih Gambar untuk Membaca Pesan (PNG, BMP)", type=["png", "bmp"], key="reveal_image")
+    uploaded_image_reveal = st.file_uploader("Pilih Gambar untuk Membaca Pesan", type=["jpg", "jpeg", "png"], key="reveal_image")
 
     if st.button("Baca Pesan", key="do_reveal"):
         if uploaded_image_reveal:
@@ -79,9 +79,9 @@ def steganography_section():
 
 # --- Hashing Functions (Adapted for Streamlit) ---
 def hashing_section():
-    st.header("Alat Hashing Lanjutan")
+    st.header("Hashing")
 
-    st.write("Buat hash MD5, SHA-256, atau SHA-512 dari teks masukan.")
+    st.write("Hashing adalah proses mengubah data input (yang bisa berupa teks, file, atau data apa pun dengan ukuran bervariasi) menjadi sebuah string alfanumerik dengan panjang tetap, yang disebut hash atau nilai hash. Proses ini dilakukan menggunakan fungsi hash atau algoritma hash.")
 
     # Inisialisasi session_state untuk input dan output hashing jika belum ada
     if 'hash_input_text_state' not in st.session_state:
@@ -138,9 +138,9 @@ def hashing_section():
 
 # --- Caesar Cipher Functions (Adapted for Streamlit) ---
 def caesar_cipher_section():
-    st.header("Caesar Cipher")
+    st.header("Kriptografi")
 
-    st.write("Lakukan enkripsi atau dekripsi teks menggunakan Caesar Cipher.")
+    st.write("Kriptografi metode Caesar Cipher adalah salah satu metode enkripsi tertua dan paling sederhana dalam kriptografi. Dinamakan demikian karena konon digunakan oleh Julius Caesar untuk mengamankan komunikasi militernya.")
 
     input_text = st.text_area("Masukkan Teks", height=150, key="caesar_input_text")
 
