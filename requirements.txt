@@ -1,4 +1,8 @@
 streamlit
 Pillow
 stegano
+os
+hahslib
+pyperclip
+tkinter
 opencv-python-headless
