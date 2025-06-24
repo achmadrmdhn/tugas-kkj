@@ -3,9 +3,9 @@ from PIL import Image
 from stegano import lsb
 import os
 import hashlib
-import pyperclip # Note: pyperclip is not directly usable in a web environment like Streamlit for client-side clipboard access. We'll simulate it or inform the user to copy manually.
-import tkinter as tk # Not directly usable in Streamlit as it's a web framework. We will adapt the logic.
-from tkinter import filedialog, messagebox # Not directly usable in Streamlit. We will adapt the logic.
+# import pyperclip # Note: pyperclip is not directly usable in a web environment like Streamlit for client-side clipboard access. We'll simulate it or inform the user to copy manually.
+# import tkinter as tk # Not directly usable in Streamlit as it's a web framework. We will adapt the logic.
+# from tkinter import filedialog, messagebox # Not directly usable in Streamlit. We will adapt the logic.
 
 
 # --- Steganography Functions (Adapted for Streamlit) ---

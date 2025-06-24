@@ -3,6 +3,6 @@ Pillow
 stegano
 os
 hahslib
-pyperclip
-tkinter
+# pyperclip
+# tkinter
 opencv-python-headless
