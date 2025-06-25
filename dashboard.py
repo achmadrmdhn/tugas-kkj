@@ -187,7 +187,7 @@ st.set_page_config(
 st.sidebar.title("Navigasi")
 app_mode = st.sidebar.radio(
     "Pilih Fitur:",
-    ["Steganografi", "Hashing", "Caesar Cipher"]
+    ["Steganografi", "Hashing", "Kriptografi"]
 )
 
 st.title("Dashboard Keamanan Sederhana")
