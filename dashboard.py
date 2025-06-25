@@ -197,5 +197,5 @@ if app_mode == "Steganografi":
     steganography_section()
 elif app_mode == "Hashing":
     hashing_section()
-elif app_mode == "Caesar Cipher":
+elif app_mode == "Kriptografi":
     caesar_cipher_section()
